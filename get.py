@@ -33,7 +33,7 @@ def get_input(day):
     if not os.path.isdir(daydir):
         os.mkdir(daydir, 0o755)
 
-    with open(os.path.join(daydir, f"day{day}.txt"), "w") as filep:
+    with open(os.path.join(daydir, "input.txt"), "w") as filep:
         filep.write(res.text.strip())
 
 

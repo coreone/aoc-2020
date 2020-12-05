@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""AoC: Day 1."""
 import sys
 
 
@@ -43,7 +44,7 @@ def dumb_solution2(nums):
 
 def main():
     """Execute the script."""
-    nums = get_numbers("day1.txt")
+    nums = get_numbers("input.txt")
     # solution(nums)
     dumb_solution2(nums)
 
