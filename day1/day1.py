@@ -16,7 +16,7 @@ def get_numbers(file):
 
 
 def solution1(nums):
-    """Find the solution."""
+    """Find solution 1."""
     for num in nums:
         num2 = 2020 - num
         if num2 in nums:
@@ -24,7 +24,7 @@ def solution1(nums):
 
 
 def solution2(nums):
-    """Find the solution."""
+    """Find solution 2."""
     for num in nums:
         for num2 in nums:
             if num == num2:
