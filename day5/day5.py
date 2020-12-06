@@ -34,18 +34,15 @@ def parse_id_bitwise(ticket_id):
     data = {}
     data["ticket_id"] = ticket_id
 
-    bits = 0
+    data["seat_id"] = 0
     for col in range(0, 10):
         if ticket_id[col] in ["B", "R"]:
             # Shift is directly opposite to column
-            bits += (1 << (9 - col))
+            data["seat_id"] += (1 << (9 - col))
 
-    row_bits = bits & 0b1111111000
     # Need to >> 3 to throw away the seat bits
-    data["row"] = row_bits >> 3
-    data["seat"] = bits & 0b0000000111
-    # Just the binary row without the shift is equal to multiplying by 8
-    data["seat_id"] = row_bits + data["seat"]
+    data["row"] = (data["seat_id"] & 0b1111111000) >> 3
+    data["seat"] = data["seat_id"] & 0b0000000111
 
     return data
 
