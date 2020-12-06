@@ -34,6 +34,7 @@ def parse_id_bitwise(ticket_id):
     data = {}
     data["ticket_id"] = ticket_id
 
+    # Seat ID math of (row * 8) + seat is just the binary value of ticket ID
     data["seat_id"] = 0
     for col in range(0, 10):
         if ticket_id[col] in ["B", "R"]:
