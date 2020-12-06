@@ -9,7 +9,7 @@ def get_input(file):
     ret = {}
     with open(file) as filep:
         for line in filep:
-            data = parse_id(line.strip())
+            data = parse_id_bitwise(line.strip())
             ret[data["seat_id"]] = data
 
     return ret
@@ -25,6 +25,27 @@ def parse_id(ticket_id):
     data["row"] = int(row, 2)
     data["seat"] = int(seat, 2)
     data["seat_id"] = (data["row"] * 8) + data["seat"]
+
+    return data
+
+
+def parse_id_bitwise(ticket_id):
+    """Parse the ticket ID into its values (bitwise)."""
+    data = {}
+    data["ticket_id"] = ticket_id
+
+    bits = 0
+    for col in range(0, 10):
+        if ticket_id[col] in ["B", "R"]:
+            # Shift is directly opposite to column
+            bits += (1 << (9 - col))
+
+    row_bits = bits & 0b1111111000
+    # Need to >> 3 to throw away the seat bits
+    data["row"] = row_bits >> 3
+    data["seat"] = bits & 0b0000000111
+    # Just the binary row without the shift is equal to multiplying by 8
+    data["seat_id"] = row_bits + data["seat"]
 
     return data
 
