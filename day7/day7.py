@@ -37,7 +37,7 @@ def fill_bag(bags, bag):
     return ret
 
 
-def solution(bags):
+def solution1(bags):
     """Find solution 1."""
     count = 0
     for bag in bags:
@@ -66,9 +66,8 @@ def solution2(bags, bag="shiny gold"):
 def main():
     """Execute the script."""
     bags = get_input("input.txt")
-    valid = solution(bags)
+    valid = solution1(bags)
     print(f"Problem 1: {valid} bags")
-    print(bags["shiny gold"])
     valid = solution2(bags)
     print(f"Problem 2: {valid} bags")
 
