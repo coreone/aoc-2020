@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""AoC: Day 7."""
+"""AoC: Day 8."""
 import sys
 
 
