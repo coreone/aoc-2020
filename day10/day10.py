@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """AoC: Day 10."""
+# import pdb
+import math
 import sys
 
 
@@ -33,8 +35,8 @@ def get_sorted_input(file):
     return ret
 
 
-def find_diffs(adapters):
-    """Find the differences between all outlets."""
+def solution1(adapters):
+    """Find solution 1."""
     diffs = {}
 
     for index in range(1, len(adapters)):
@@ -44,21 +46,31 @@ def find_diffs(adapters):
         else:
             diffs[diff] += 1
 
-    return diffs
-
-
-def solution1(adapters):
-    """Find solution 1."""
-    diffs = find_diffs(adapters)
-
     return diffs[1] * diffs[3]
 
 
 def solution2(adapters):
     """Find solution 2."""
-    arrangement = 0
+    total = 1
 
-    return arrangement
+    subtotal = 0
+    for index in range(len(adapters)-2, 0, -1):
+        if (adapters[index+1] - adapters[index-1]) <= 3:
+            subtotal += 1
+            if (index < len(adapters)-2) and (adapters[index+2] - adapters[index-1]) <= 3:
+                subtotal += 1
+            if (index - 1 > 0) and (adapters[index+1] - adapters[index-2]) <= 3:
+                subtotal += 1
+        else:
+            if subtotal > 0:
+                if subtotal == 1:
+                    subtotal = 2
+                total *= subtotal
+            subtotal = 0
+
+    total *= subtotal
+
+    return total
 
 
 def main():
